@@ -97,7 +97,7 @@ export default class Onboarding1 extends Component {
   onError = err => {
     console.log(err);
   };
-
+  
   render() {
     const styles = StyleSheet.create({
       container: {
@@ -138,6 +138,7 @@ export default class Onboarding1 extends Component {
 
         <TouchableOpacity
           style={[styles.button, { backgroundColor: "#665EFF" }]}
+          onPress={() => this.props.navigation.navigate("Signup")}
         >
           <Text
             style={{

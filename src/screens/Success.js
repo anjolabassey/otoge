@@ -4,24 +4,10 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
-  TouchableOpacity,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
-  Modal,
-  WebView
+  Image
 } from "react-native";
 
-export default class Verify extends Component {
-    constructor() {
-        this.state = {
-          name: "Nemi"
-        }
-    this.onPressButton = this.onPressButton.bind(this);
-  }
-  _onPressButton() {
-    alert("You tapped the button!");
-  }
+export default class Success extends Component {
   render() {
     const styles = StyleSheet.create({
       container: {
@@ -50,18 +36,19 @@ export default class Verify extends Component {
     return (
       <View style={styles.container}>
         <Image
-          style={{ marginTop: 275, marginBottom: 38.05 }}
-          source={require("../assets/img/back.png")}
+          style={{ marginTop: 168.46, marginBottom: 70.84 }}
+          source={require("../assets/img/verified.png")}
         />
+       
 
         <Text
           style={{
-            fontSize: 15,
-            lineHeight: 20,
+            fontSize: 24,
+            lineHeight: 34,
             color: "#ffffff"
           }}
         >
-          Hello, {{ name }}
+          Your profile has been created successfully!
         </Text>
       </View>
     );

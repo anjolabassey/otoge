@@ -5,21 +5,12 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
-  Modal,
-  WebView
+  TouchableOpacity
 } from "react-native";
 
 
 export default class Onboarding2 extends Component {
-  constructor() {
-    this.onPressButton = this.onPressButton.bind(this);
-  }
-  _onPressButton() {
-    alert("You tapped the button!");
-  }
+ 
   render() {
     const styles = StyleSheet.create({
       container: {
@@ -73,7 +64,6 @@ export default class Onboarding2 extends Component {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={this.onPressButton}
           style={[styles.button, { backgroundColor: "#D2F1FC", marginTop: 26 }]}
         >
           <Text
