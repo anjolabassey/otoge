@@ -14,7 +14,9 @@ export default class Signup extends Component {
     super(props);
 
     this.state = {
-      name: "",
+      email:"",
+      Fname: "",
+      Lname:"",
       phonenumber: "",
       password: "",
       border: "transparent"
@@ -30,7 +32,36 @@ export default class Signup extends Component {
     });
   }
   validateSignup() {
-    this.props.navigation.navigate("Verify");
+
+    let url = 'https://46a58315.ngrok.io/otogenow/api/v1/signup'
+    let phonenumber = this.state.phonenumber
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify({
+        "email": this.state.email,
+        "phone": this.state.phonenumber,
+        "firstName": this.state.Fname,
+        "lastName": this.state.Lname,
+        "pin": this.state.password
+      })
+    }) 
+    .then(data => {
+      // console.log(JSON.stringify(data))
+      return data.json()
+    })
+    .then(res => {
+    
+      return console.log(res)}
+      )
+    .catch(err => (console.log(err)));
+
+    this.props.navigation.navigate("Verify", {phonenumber});
+
   }
   goBack() {
     this.props.navigation.navigate("Landing");
@@ -90,8 +121,16 @@ export default class Signup extends Component {
             <TextInput
               style={{ color: "#ffffff" }}
               onFocus={() => this.onFocus()}
-              placeholder="name"
-              onChangeText={name => this.setState({ name })}
+              placeholder="First Name"
+              onChangeText={name => this.setState({ Fname })}
+            />
+          </View>
+          <View style={styles.inputWrapper}>
+            <TextInput
+              style={{ color: "#ffffff" }}
+              onFocus={() => this.onFocus()}
+              placeholder="Last Name"
+              onChangeText={name => this.setState({ Lname })}
             />
           </View>
 
