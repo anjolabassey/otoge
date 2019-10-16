@@ -86,7 +86,8 @@ export default class Onboarding2 extends Component {
             marginTop: 20
           }}
         >
-          Already have an account? Log in
+          Already have an account?
+          <Text style={{ fontWeight: "bold" }}>Log in</Text>
         </Text>
       </View>
     );

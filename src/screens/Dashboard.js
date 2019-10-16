@@ -17,21 +17,20 @@ export default class Dashboard extends Component {
       timer: ""
       // user: this.props.user
     };
-    this.recordWord = this.recordWord.bind(this);
-    this.setupContacts = this.setupContacts.bind(this);
+    this.donate = this.donate.bind(this);
+    this.sos = this.sos.bind(this);
   }
-  recordWord() {
-     this.props.navigation.navigate("Record");
+  donate() {
+    this.props.navigation.navigate("Record");
   }
-    setupContacts() {
-        console.log("setting up contacts");
-      this.props.navigation.navigate("ContactSelect");
+  sos() {
+    console.log("setting up sos");
+    this.props.navigation.navigate("ContactSelect");
+  }
 
+  goBack() {
+    console.log("go back");
   }
-
-    goBack(){
-      console.log("go back")
-    }
 
   render() {
     const styles = StyleSheet.create({
@@ -52,13 +51,18 @@ export default class Dashboard extends Component {
         alignItems: "center",
         width: "100%"
       },
-      button: {
-        paddingVertical: 20,
-        paddingHorizontal: 53,
+      post: {
+        backgroundColor: "#404876",
         borderRadius: 12,
-        marginBottom: 28,
+        marginTop: 72,
+        marginBottom: 159
+      },
+      donate: {
+        borderRadius: "50%",
         backgroundColor: "#665EFF",
-        width: "80%"
+        shadowOffset: { width: 2, height: 20 },
+        shadowColor: '#000000',
+        shadowOpacity: 0.5
       }
     });
 
@@ -73,7 +77,7 @@ export default class Dashboard extends Component {
               <Image source={require("../assets/img/swipe1.png")} />
             </TouchableOpacity>
             <TouchableOpacity>
-              <Image source={require("../assets/img/stopwatch.png")} />
+              <Image source={require("../assets/img/sos.png")} />
             </TouchableOpacity>
           </View>
         </TouchableOpacity>
@@ -100,42 +104,24 @@ export default class Dashboard extends Component {
             textAlign: "center"
           }}
         >
-          To get started with O to ge, please record your safe word and add your
-          emergency contacts
+          You have made <Text style={{ fontWeight: "bold" }}>0</Text> reports
+          today
         </Text>
 
-        <View style={{ alignItems: "center" }}>
-          {/* <TouchableOpacity
-            onPress={this.recordWord}
-            style={[styles.button, { marginTop: 89 }]}
-          >
-            <Text
-              style={{
-                fontSize: 18,
-                lineHeight: 28,
-                textAlign: "center",
-                fontWeight: "bold",
-                color: "#ffffff"
-              }}
-            >
-              Record your safe word
-            </Text>
-          </TouchableOpacity> */}
-
-          <TouchableOpacity onPress={this.setupContacts} style={styles.button}>
-            <Text
-              style={{
-                fontSize: 18,
-                lineHeight: 28,
-                textAlign: "center",
-                fontWeight: "bold",
-                color: "#ffffff"
-              }}
-            >
-              Add emergency contacts
-            </Text>
-          </TouchableOpacity>
+        <View style={[styles.post, { alignItems: "center" }]}>
+          <Text>Yesterday, 4:00pm</Text>
+          <Text>
+            Help! I’ve been accosted by SARS officials at Eric Moore, Bode
+            Thomas, Surulere. @segalink @policeng #ENDSARS #StopRobbingUs.
+          </Text>
         </View>
+
+        <TouchableOpacity style={styles.donate} onPress={this.donate}>
+          <Image
+            style={{ marginTop: 29.23 }}
+            source={require("../assets/img/donate.png")}
+          />
+        </TouchableOpacity>
       </View>
     );
   }
