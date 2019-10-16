@@ -26,7 +26,13 @@ export default class Dashboard extends Component {
   }
     setupContacts() {
         console.log("setting up contacts");
+        this.props.navigation.navigate("ContactSelect")
+
   }
+
+    goBack(){
+      console.log("go back")
+    }
 
   render() {
     const styles = StyleSheet.create({

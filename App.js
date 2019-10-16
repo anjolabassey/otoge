@@ -8,6 +8,7 @@ import LandingScreen from "./src/screens/Landing";
 import VerifySignupScreen from "./src/screens/Verify";
 import SuccessScreen from "./src/screens/Success";
 import DashboardScreen from "./src/screens/Dashboard";
+import Contact from "./src/screens/Contact";
 
 
 const MainNavigator = createStackNavigator(
@@ -18,7 +19,8 @@ const MainNavigator = createStackNavigator(
     Landing: { screen: LandingScreen },
     Verify: { screen: VerifySignupScreen },
     Success: { screen: SuccessScreen },
-    Dashboard: { screen: DashboardScreen }
+    Dashboard: { screen: DashboardScreen },
+    ContactSelect: { screen: Contact}
   },
   {
     // header: null,
