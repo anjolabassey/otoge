@@ -36,6 +36,8 @@ export default class Verify extends Component {
   }
   success() {
 
+    let url = "https://46a58315.ngrok.io/otogenow/api/v1/otp"
+
     fetch(url, {
       method: 'POST',
       headers: {

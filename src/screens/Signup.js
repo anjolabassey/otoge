@@ -33,7 +33,7 @@ export default class Signup extends Component {
   }
   validateSignup() {
 
-    let url = 'http://68.169.59.171:9800/otogenow/api/v1/addcontact'
+    let url = 'https://46a58315.ngrok.io/otogenow/api/v1/signup'
     let phonenumber = this.state.phonenumber
 
     fetch(url, {
