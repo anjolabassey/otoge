@@ -53,7 +53,10 @@ export default class Contact extends Component {
         }
    })
 
-
+   data2 = data2.map(item => {
+    item.isSelect = false;
+    item.selectedClass = styles.list;
+});
 
     this.setState({ contacts: data2, inMemoryContacts: data2, isLoading: false });
   };
@@ -76,7 +79,7 @@ export default class Contact extends Component {
     })
     
 
-    this.props.navigation.navigate("Dashboard")
+    this.props.navigation.navigate("Emergency")
   }
 
   renderItem = ({ item }) => (
@@ -146,7 +149,7 @@ export default class Contact extends Component {
             </View>
           ) : null}
           <FlatList
-            data={this.state.contacts.sort((a, b) => a.name.localeCompare(b.name))}
+            data={this.state.contacts}
             renderItem={this.renderItem}
             keyExtractor={(item, index) => index.toString()}
             ListEmptyComponent={() => (
