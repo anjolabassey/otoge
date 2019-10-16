@@ -17,11 +17,11 @@ export default class Landing extends Component {
       timer: ""
       // user: this.props.user
     };
-    this.recordWord = this.recordWord.bind(this);
+    this.goBack = this.goBack.bind(this);
     this.setupContacts = this.setupContacts.bind(this);
   }
-  recordWord() {
-    this.props.navigation.navigate("Record");
+  goBack() {
+    this.props.navigation.navigate("Home");
   }
   setupContacts() {
     console.log("setting up contacts");

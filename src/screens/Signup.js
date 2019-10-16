@@ -37,34 +37,33 @@ export default class Signup extends Component {
     let phonenumber = this.state.phonenumber
 
     fetch(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify({
-        "email": this.state.email,
-        "phone": this.state.phonenumber,
-        "firstName": this.state.Fname,
-        "lastName": this.state.Lname,
-        "pin": this.state.password
+        email: "ananymous@gmail.com",
+        phone: this.state.phonenumber,
+        firstName: this.state.Fname,
+        lastName: this.state.Lname,
+        pin: this.state.password
       })
-    }) 
-    .then(data => {
-      // console.log(JSON.stringify(data))
-      return data.json()
     })
-    .then(res => {
-    
-      return console.log(res)}
-      )
-    .catch(err => (console.log(err)));
+      .then(data => {
+        // console.log(JSON.stringify(data))
+        return data.json();
+      })
+      .then(res => {
+        return console.log(res);
+      })
+      .catch(err => console.log(err));
 
     this.props.navigation.navigate("Verify", {phonenumber});
 
   }
   goBack() {
-    this.props.navigation.navigate("Landing");
+    this.props.navigation.navigate("Home");
   }
 
   render() {
@@ -134,7 +133,7 @@ export default class Signup extends Component {
               style={{ color: "#959DAD" }}
               onFocus={() => this.onFocus()}
               placeholder="First Name"
-              onChangeText={name => this.setState({ Fname })}
+              onChangeText={Fname => this.setState({ Fname })}
             />
           </View>
           <View style={styles.inputWrapper}>
@@ -142,7 +141,7 @@ export default class Signup extends Component {
               style={{ color: "#ffffff" }}
               onFocus={() => this.onFocus()}
               placeholder="Last Name"
-              onChangeText={name => this.setState({ Lname })}
+              onChangeText={Lname => this.setState({ Lname })}
             />
           </View>
 

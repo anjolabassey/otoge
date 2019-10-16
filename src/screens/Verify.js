@@ -58,6 +58,7 @@ export default class Verify extends Component {
 
       if (res.responseCode === "00"){
         this.props.navigation.navigate("Success");
+       
       } else{
         return(
           <View>
@@ -74,7 +75,7 @@ export default class Verify extends Component {
     
   }
   goBack() {
-    this.props.navigation.navigate("Landing");
+    this.props.navigation.navigate("Signup");
   }
 
   
