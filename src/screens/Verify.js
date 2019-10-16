@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   TextInput
 } from "react-native";
+import OTPTextView from '../../node_modules/react-native-otp-textinput';
 // import OtpInputs from "../components/OtpInputs";
 
 export default class Verify extends Component {
@@ -22,20 +23,7 @@ export default class Verify extends Component {
     this.success = this.success.bind(this);
     this.goBack = this.goBack.bind(this);
   }
-  performTimeConsumingTask = async () => {
-    return new Promise(resolve =>
-      setTimeout(() => {
-        resolve("result");
-      }, 5000)
-    );
-  };
-  async componentDidMount() {
-    const data = await this.performTimeConsumingTask();
-    if (data !== null) {
-      this.props.navigation.navigate("Dashboard");
-    }
-  }
-
+  
   getOtp(otp) {
     console.log(otp);
     this.setState({ otp });
@@ -51,6 +39,22 @@ export default class Verify extends Component {
   }
   goBack() {
     this.props.navigation.navigate("Landing");
+  }
+
+  performTimeConsumingTask = async() => {
+    return new Promise((resolve) =>
+      setTimeout(
+        () => { resolve('result') },
+        5000
+      )
+    )
+  }
+  async componentDidMount() {
+    
+    const data = await this.performTimeConsumingTask();
+    if (data !== null) {
+      this.props.navigation.navigate('Dashboard');
+    }
   }
 
   render() {
@@ -77,7 +81,12 @@ export default class Verify extends Component {
         borderColor: this.state.border,
         borderStyle: "solid",
         width: "80%"
-      }
+      },
+      roundedTextInput: {
+        borderRadius: 10,
+        borderWidth: 4,
+      },
+
     });
 
     return (
@@ -102,6 +111,15 @@ export default class Verify extends Component {
           >
             Enter 4-digit pin sent to your device
           </Text>
+
+
+          <OTPTextView
+          containerStyle={styles.textInputContainer}
+          handleTextChange={text => this.setState({ otp: text })}
+          textInputStyle={styles.roundedTextInput}
+          inputCount={4}
+          keyboardType="numeric"
+          />
 
           <Text
             style={{
@@ -137,3 +155,26 @@ export default class Verify extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+    padding: 5,
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    fontSize: 22,
+    fontWeight: '500',
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 20,
+  },
+  
+});
