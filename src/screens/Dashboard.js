@@ -21,13 +21,11 @@ export default class Dashboard extends Component {
     this.setupContacts = this.setupContacts.bind(this);
   }
   recordWord() {
-    this.setState({
-      border: "#665EFF"
-    });
+     this.props.navigation.navigate("Record");
   }
     setupContacts() {
         console.log("setting up contacts");
-        this.props.navigation.navigate("ContactSelect")
+      this.props.navigation.navigate("ContactSelect");
 
   }
 
@@ -59,7 +57,7 @@ export default class Dashboard extends Component {
         paddingHorizontal: 53,
         borderRadius: 12,
         marginBottom: 28,
-        backgroundColor: "#89AAE6",
+        backgroundColor: "#665EFF",
         width: "80%"
       }
     });
@@ -107,7 +105,7 @@ export default class Dashboard extends Component {
         </Text>
 
         <View style={{ alignItems: "center" }}>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={this.recordWord}
             style={[styles.button, { marginTop: 89 }]}
           >
@@ -122,7 +120,7 @@ export default class Dashboard extends Component {
             >
               Record your safe word
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
           <TouchableOpacity onPress={this.setupContacts} style={styles.button}>
             <Text

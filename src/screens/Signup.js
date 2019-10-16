@@ -49,6 +49,18 @@ export default class Signup extends Component {
         borderRadius: 12,
         marginTop: 63
       },
+      input: {
+        paddingHorizontal: 10,
+        paddingVertical: 1,
+        marginBottom: 24,
+        backgroundColor: "#454F63",
+        color: "#ffffff",
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: this.state.border,
+        borderStyle: "solid",
+        width: "80%"
+      },
       inputWrapper: {
         paddingHorizontal: 17,
         paddingVertical: 17,
@@ -88,18 +100,26 @@ export default class Signup extends Component {
 
           <View style={styles.inputWrapper}>
             <TextInput
-              style={{ color: "#ffffff" }}
+              style={{ color: "#959DAD" }}
               onFocus={() => this.onFocus()}
-              placeholder="name"
-              onChangeText={name => this.setState({ name })}
+              placeholder="First name"
+              onChangeText={firstName => this.setState({ name })}
             />
           </View>
 
-          <View style={styles.inputWrapper}>
+
+          <View style={styles.input}>
+            <View style={{ flexDirection: "row", marginTop: 15 }}>
+              <Text style={{ color: "#ffffff" }}>+234</Text>
+              <Image
+                style={{ marginTop: 10, marginLeft: 5 }}
+                source={require("../assets/img/chevron.png")}
+              />
+            </View>
+
             <TextInput
               style={{ color: "#ffffff" }}
               onFocus={() => this.onFocus()}
-              placeholder="+234"
               onChangeText={phonenumber => this.setState({ phonenumber })}
             />
           </View>

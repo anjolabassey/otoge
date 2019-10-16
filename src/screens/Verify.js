@@ -53,7 +53,7 @@ export default class Verify extends Component {
     
     const data = await this.performTimeConsumingTask();
     if (data !== null) {
-      this.props.navigation.navigate('Dashboard');
+      this.props.navigation.navigate('Landing');
     }
   }
 
