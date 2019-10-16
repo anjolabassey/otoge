@@ -15,6 +15,7 @@ export default class Dashboard extends Component {
 
     this.state = {
       timer: ""
+      // user: this.props.user
     };
     this.recordWord = this.recordWord.bind(this);
     this.setupContacts = this.setupContacts.bind(this);
@@ -35,23 +36,44 @@ export default class Dashboard extends Component {
         backgroundColor: "#2A2E43",
         color: "#ffffff"
       },
+      nav: {
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 5,
+        // paddingHorizontal: 20,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        width: "100%"
+      },
       button: {
         paddingVertical: 20,
         paddingHorizontal: 53,
         borderRadius: 12,
         marginBottom: 28,
-          backgroundColor: "#89AAE6",
-        width: '80%'
+        backgroundColor: "#89AAE6",
+        width: "80%"
       }
     });
 
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={this.goBack}>
-          <Image
-            style={{ marginTop: 29.23, marginLeft: 43 }}
-            source={require("../assets/img/back.png")}
-          />
+          <View style={styles.nav}>
+            <Image
+              style={{ marginTop: 45, marginBottom: 44 }}
+              source={require("../assets/img/settings.png")}
+            />
+            <Image
+              style={{ marginTop: 45, marginBottom: 44 }}
+              source={require("../assets/img/swipe1.png")}
+            />
+            <Image
+              style={{ marginTop: 45, marginBottom: 44 }}
+              source={require("../assets/img/stopwatch.png")}
+            />
+          </View>
         </TouchableOpacity>
 
         <Text
@@ -64,7 +86,21 @@ export default class Dashboard extends Component {
             textAlign: "center"
           }}
         >
-          Set Timer {this.state.timer}
+          Welcome, {this.props.username}
+        </Text>
+
+        <Text
+          style={{
+            fontSize: 18,
+            lineHeight: 28,
+            marginBottom: 165,
+            marginTop: 20,
+            color: "#ffffff",
+            textAlign: "center"
+          }}
+        >
+          To get started with O to ge, please record your safe word and add your
+          emergency contacts
         </Text>
 
         <View style={{ alignItems: "center" }}>

@@ -9,6 +9,12 @@
       "android",
       "web"
     ],
+    "extra": {
+      "twitter": {
+        "consumerKey": "xijAmVmKvRTDThy9w4yBWtBZo",
+        "consumerKeySecret": "VULxJICpYDL5z7CfW9hG6LZbZQCxtERKdQS2MyD26q9jTgadJi"
+      }
+    },
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "",
