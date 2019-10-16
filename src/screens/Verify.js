@@ -35,26 +35,52 @@ export default class Verify extends Component {
     });
   }
   success() {
-    this.props.navigation.navigate("Success");
+
+    let url = "https://46a58315.ngrok.io/otogenow/api/v1/otp"
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify({
+        "userId": this.navigation.navigate.state.params.phonenumber, 
+        "otpString": this.state.otp 
+      })
+    }) 
+    .then(data => {
+      // console.log(JSON.stringify(data))
+      return data.json()
+      
+    })
+    .then(res => {
+
+      if (res.responseCode === "00"){
+        this.props.navigation.navigate("Success");
+      } else{
+        return(
+          <View>
+            <Text>Wrong OTP</Text>
+          </View>
+        )
+      }
+
+      return console.log(res)
+    })
+    .catch(err => (console.log(err))); 
+    
+
+    
   }
   goBack() {
     this.props.navigation.navigate("Landing");
   }
 
-  performTimeConsumingTask = async() => {
-    return new Promise((resolve) =>
-      setTimeout(
-        () => { resolve('result') },
-        5000
-      )
-    )
-  }
+  
   async componentDidMount() {
     
-    const data = await this.performTimeConsumingTask();
-    if (data !== null) {
-      this.props.navigation.navigate('Landing');
-    }
+   
   }
 
   render() {
