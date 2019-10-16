@@ -27,7 +27,13 @@ export default class Dashboard extends Component {
   }
     setupContacts() {
         console.log("setting up contacts");
+        this.props.navigation.navigate("ContactSelect")
+
   }
+
+    goBack(){
+      console.log("go back")
+    }
 
   render() {
     const styles = StyleSheet.create({
@@ -41,7 +47,8 @@ export default class Dashboard extends Component {
         shadowOpacity: 0.8,
         shadowRadius: 2,
         elevation: 5,
-        // paddingHorizontal: 20,
+        paddingVertical: 30,
+        paddingHorizontal: 30,
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
@@ -61,18 +68,15 @@ export default class Dashboard extends Component {
       <View style={styles.container}>
         <TouchableOpacity onPress={this.goBack}>
           <View style={styles.nav}>
-            <Image
-              style={{ marginTop: 45, marginBottom: 44 }}
-              source={require("../assets/img/settings.png")}
-            />
-            <Image
-              style={{ marginTop: 45, marginBottom: 44 }}
-              source={require("../assets/img/swipe1.png")}
-            />
-            <Image
-              style={{ marginTop: 45, marginBottom: 44 }}
-              source={require("../assets/img/stopwatch.png")}
-            />
+            <TouchableOpacity>
+              <Image source={require("../assets/img/settings.png")} />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Image source={require("../assets/img/swipe1.png")} />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Image source={require("../assets/img/stopwatch.png")} />
+            </TouchableOpacity>
           </View>
         </TouchableOpacity>
 
@@ -80,8 +84,8 @@ export default class Dashboard extends Component {
           style={{
             fontSize: 26,
             lineHeight: 34,
-            marginBottom: 52,
-            marginTop: 57.26,
+            marginBottom: 20,
+            marginTop: 56,
             color: "#ffffff",
             textAlign: "center"
           }}
@@ -94,7 +98,6 @@ export default class Dashboard extends Component {
             fontSize: 18,
             lineHeight: 28,
             marginBottom: 165,
-            marginTop: 20,
             color: "#ffffff",
             textAlign: "center"
           }}
