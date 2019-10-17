@@ -7,7 +7,27 @@ import {
   Image
 } from "react-native";
 
+
+
 export default class Success extends Component {
+
+
+  performTimeConsumingTask = async() => {
+    return new Promise((resolve) =>
+      setTimeout(
+        () => { resolve('result') },
+        3000
+      )
+    )
+  }
+  async componentDidMount() {
+    
+    const data = await this.performTimeConsumingTask();
+    if (data !== null) {
+      this.props.navigation.navigate('Dashboard');
+    }
+  }
+
   render() {
     const styles = StyleSheet.create({
       container: {

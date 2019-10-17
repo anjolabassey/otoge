@@ -2077,7 +2077,7 @@ expo-av@^7.0.1:
   dependencies:
     lodash "^4.17.15"
     nullthrows "^1.1.0"
-
+   
 expo-constants@^7.0.0, expo-constants@~7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-7.0.0.tgz#668c3ec0100e219522ffd9515ec47fadfccd443d"

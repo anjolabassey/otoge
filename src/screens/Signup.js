@@ -6,8 +6,10 @@ import {
   View,
   Image,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  Alert
 } from "react-native";
+import {KeyboardAvoidingView} from 'react-native';
 
 export default class Signup extends Component {
   constructor(props) {
@@ -36,6 +38,12 @@ export default class Signup extends Component {
     let url = 'https://46a58315.ngrok.io/otogenow/api/v1/signup'
     let phonenumber = this.state.phonenumber
 
+    if (this.state.Fname === "" || this.state.Lname === "" || this.state.phonenumber === "" || this.state.password === "" ){
+          Alert.alert("Please All Details are Required")
+          this.props.navigation.navigate("Signup");
+
+    }else{
+
     fetch(url, {
       method: "POST",
       headers: {
@@ -50,6 +58,14 @@ export default class Signup extends Component {
         pin: this.state.password
       })
     })
+
+    .then(res => {
+    
+      this.props.navigation.navigate("Verify", {phonenumber});
+      return console.log(res)}
+      )
+    .catch(err => (console.log(err)));
+
       .then(data => {
         // console.log(JSON.stringify(data))
         return data.json();
@@ -59,8 +75,9 @@ export default class Signup extends Component {
       })
       .catch(err => console.log(err));
 
-    this.props.navigation.navigate("Verify", {phonenumber});
 
+    
+    }
   }
   goBack() {
     this.props.navigation.navigate("Home");
@@ -113,8 +130,7 @@ export default class Signup extends Component {
             source={require("../assets/img/back.png")}
           />
         </TouchableOpacity>
-
-        <View style={{ alignItems: "center" }}>
+          <View style={{ alignItems: "center" }}>
           <Text
             style={{
               fontSize: 26,
@@ -188,7 +204,9 @@ export default class Signup extends Component {
             </Text>
           </TouchableOpacity>
         </View>
+       
       </View>
+        
     );
   }
 }
