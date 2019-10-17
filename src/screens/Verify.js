@@ -6,7 +6,8 @@ import {
   View,
   Image,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  Alert
 } from "react-native";
 import OTPTextView from '../../node_modules/react-native-otp-textinput';
 // import OtpInputs from "../components/OtpInputs";
@@ -38,6 +39,11 @@ export default class Verify extends Component {
 
     let url = "https://46a58315.ngrok.io/otogenow/api/v1/otp"
 
+    if(this.state.otp === ""){ 
+      Alert.alert("Please enter OTP")
+    }
+    else{   
+
     fetch(url, {
       method: 'POST',
       headers: {
@@ -45,7 +51,7 @@ export default class Verify extends Component {
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify({
-        "userId": this.navigation.navigate.state.params.phonenumber, 
+        "userId": this.props.navigation.state.params.phonenumber, 
         "otpString": this.state.otp 
       })
     }) 
@@ -59,11 +65,9 @@ export default class Verify extends Component {
       if (res.responseCode === "00"){
         this.props.navigation.navigate("Success");
       } else{
-        return(
-          <View>
-            <Text>Wrong OTP</Text>
-          </View>
-        )
+        Alert.alert("OTP does'nt match")
+        this.props.navigation.navigate("Verify");
+
       }
 
       return console.log(res)
@@ -71,7 +75,7 @@ export default class Verify extends Component {
     .catch(err => (console.log(err))); 
     
 
-    
+  } 
   }
   goBack() {
     this.props.navigation.navigate("Landing");
@@ -123,6 +127,7 @@ export default class Verify extends Component {
             source={require("../assets/img/back.png")}
           />
         </TouchableOpacity>
+        
 
         <View style={{ alignItems: "center" }}>
           <Text
@@ -135,7 +140,7 @@ export default class Verify extends Component {
               textAlign: "center"
             }}
           >
-            Enter 4-digit pin sent to your device
+            Enter 5-digit pin sent to your device
           </Text>
 
 
@@ -143,7 +148,7 @@ export default class Verify extends Component {
           containerStyle={styles.textInputContainer}
           handleTextChange={text => this.setState({ otp: text })}
           textInputStyle={styles.roundedTextInput}
-          inputCount={4}
+          inputCount={5}
           keyboardType="numeric"
           />
 

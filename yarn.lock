@@ -1934,6 +1934,11 @@ escape-html@~1.0.3:
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
   integrity sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg=
 
+escape-string-regexp@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-2.0.0.tgz#a30304e99daa32e23b2fd20f51babd07cffca344"
+  integrity sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==
+
 escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
@@ -2045,7 +2050,7 @@ expo-asset@~7.0.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-constants@~7.0.0:
+expo-constants@^7.0.0, expo-constants@~7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-7.0.0.tgz#668c3ec0100e219522ffd9515ec47fadfccd443d"
   integrity sha512-oLINuMtGcAwfHGInSVhq6xGojp3atUpSIp7KImo9rqXhWwD5FNmqA5Jflo4J0ODPq590kN5ieiYCCqwls2/u0w==
@@ -2720,7 +2725,7 @@ inquirer@^3.0.6:
     strip-ansi "^4.0.0"
     through "^2.3.6"
 
-invariant@^2.2.2, invariant@^2.2.4:
+invariant@2.2.4, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -4443,13 +4448,6 @@ react-native-otp-textinput@0.0.6:
   dependencies:
     prop-types "^15.6.2"
 
-react-native-safe-area-view@^0.13.1:
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.13.2.tgz#fd8245182cfa3240dcc679b010cff43ad32cecb1"
-  integrity sha512-UEeoHi7HXObKd111RKZa6a+aQdxLHlngfaoM3UBgeDDc+7BU7Vd54DSzFFWDL3lwFhieTSvLh6z89jHDypA9KQ==
-  dependencies:
-    hoist-non-react-statics "^2.3.1"
-
 react-native-safe-area-view@^0.14.1:
   version "0.14.8"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.14.8.tgz#ef33c46ff8164ae77acad48c3039ec9c34873e5b"
@@ -4464,13 +4462,13 @@ react-native-safe-area-view@^0.14.1:
   dependencies:
     debounce "^1.2.0"
 
-react-native-simple-twitter@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/react-native-simple-twitter/-/react-native-simple-twitter-2.3.0.tgz#4f2fcd051cea8d445388827022fd43ef85dd7973"
-  integrity sha512-6I2JIgklb5WoaKv38oSGCls6NR1RdOIqL8zPBe37zkrh1qGlqD/yAbLOi37IZRJGKP6vQkUzz1f6GnKfMk8A7g==
+react-native-simple-twitter@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-simple-twitter/-/react-native-simple-twitter-2.4.0.tgz#2c8075264fa9bafea1b75d356ad3a8bf2ae346df"
+  integrity sha512-qL0W/e+jHh/2FfR7nK0eneJMZfNHRFFVnZRy9mUSlWmU8wR8a6waOwNXW+6jCcZ10dx+4GHCrdzLzZQcNzv6ew==
   dependencies:
     crypto-js "^3.1.9-1"
-    react-native-safe-area-view "^0.13.1"
+    react-native-webview "^7.4.2"
 
 react-native-tab-view@^1.2.0, react-native-tab-view@^1.4.1:
   version "1.4.1"
@@ -4508,6 +4506,14 @@ react-native-web@^0.11.4:
     normalize-css-color "^1.0.2"
     prop-types "^15.6.0"
     react-timer-mixin "^0.13.4"
+
+react-native-webview@^7.4.2:
+  version "7.4.2"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-7.4.2.tgz#4206ef92c95bcb7207fdade608e5f5a1f62a3f83"
+  integrity sha512-B9cKZCiQniIXlhhDwvd/GUA7HSsSNbFVkRbnvhmGjOrkBPiaK7Omq6t3/KMGxChD3o1qCsohH0Zrm0A7QUvQOg==
+  dependencies:
+    escape-string-regexp "2.0.0"
+    invariant "2.2.4"
 
 "react-native@https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz":
   version "0.59.8"

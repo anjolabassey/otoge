@@ -6,8 +6,10 @@ import {
   View,
   Image,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  Alert
 } from "react-native";
+import {KeyboardAvoidingView} from 'react-native';
 
 export default class Signup extends Component {
   constructor(props) {
@@ -36,6 +38,12 @@ export default class Signup extends Component {
     let url = 'https://46a58315.ngrok.io/otogenow/api/v1/signup'
     let phonenumber = this.state.phonenumber
 
+    if (this.state.Fname === "" || this.state.Lname === "" || this.state.phonenumber === "" || this.state.password === "" ){
+          Alert.alert("Please All Details are Required")
+          this.props.navigation.navigate("Signup");
+
+    }else{
+
     fetch(url, {
       method: 'POST',
       headers: {
@@ -56,12 +64,13 @@ export default class Signup extends Component {
     })
     .then(res => {
     
+      this.props.navigation.navigate("Verify", {phonenumber});
       return console.log(res)}
       )
     .catch(err => (console.log(err)));
 
-    this.props.navigation.navigate("Verify", {phonenumber});
-
+    
+    }
   }
   goBack() {
     this.props.navigation.navigate("Landing");
@@ -102,8 +111,7 @@ export default class Signup extends Component {
             source={require("../assets/img/back.png")}
           />
         </TouchableOpacity>
-
-        <View style={{ alignItems: "center" }}>
+          <View style={{ alignItems: "center" }}>
           <Text
             style={{
               fontSize: 26,
@@ -122,7 +130,7 @@ export default class Signup extends Component {
               style={{ color: "#ffffff" }}
               onFocus={() => this.onFocus()}
               placeholder="First Name"
-              onChangeText={name => this.setState({ Fname })}
+              onChangeText={Fname => this.setState({ Fname })}
             />
           </View>
           <View style={styles.inputWrapper}>
@@ -130,7 +138,7 @@ export default class Signup extends Component {
               style={{ color: "#ffffff" }}
               onFocus={() => this.onFocus()}
               placeholder="Last Name"
-              onChangeText={name => this.setState({ Lname })}
+              onChangeText={Lname => this.setState({ Lname })}
             />
           </View>
 
@@ -169,7 +177,9 @@ export default class Signup extends Component {
             </Text>
           </TouchableOpacity>
         </View>
+       
       </View>
+        
     );
   }
 }
