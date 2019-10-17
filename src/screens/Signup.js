@@ -9,7 +9,7 @@ import {
   TextInput,
   Alert
 } from "react-native";
-import {KeyboardAvoidingView} from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 
 export default class Signup extends Component {
   constructor(props) {
@@ -35,7 +35,7 @@ export default class Signup extends Component {
   }
   validateSignup() {
 
-    let url = 'https://46a58315.ngrok.io/otogenow/api/v1/signup'
+    let url = 'http://68.169.59.171:9800/otogenow/api/v1/signup'
     let phonenumber = this.state.phonenumber
 
     if (this.state.Fname === "" || this.state.Lname === "" || this.state.phonenumber === "" || this.state.password === "" ){
@@ -51,7 +51,7 @@ export default class Signup extends Component {
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify({
-        email: Date.now() + "an@gmail.com",
+        email: "ananymous@gmail.com",
         phone: this.state.phonenumber,
         firstName: this.state.Fname,
         lastName: this.state.Lname,
@@ -65,15 +65,6 @@ export default class Signup extends Component {
       return console.log(res)}
       )
     .catch(err => (console.log(err)));
-
-      .then(data => {
-        // console.log(JSON.stringify(data))
-        return data.json();
-      })
-      .then(res => {
-        return console.log(res);
-      })
-      .catch(err => console.log(err));
 
 
     
