@@ -19,7 +19,7 @@
     "orientation": "portrait",
     "icon": "",
     "splash": {
-      "image": "./src/assets/img/icon.png",
+      "image": "",
       "resizeMode": "contain",
       "backgroundColor": "#2A2E43"
     },

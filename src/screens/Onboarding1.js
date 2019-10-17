@@ -85,14 +85,11 @@ function Onboarding1(props) {
             })
             .then(res => {
               if (res.responseCode === "00") {
-                this.props.navigation.navigate("Dashboard");
-              } else {
-                return (
-                  <View>
-                    <Text>Wrong OTP</Text>
-                  </View>
-                );
+                props.navigation.navigate("Dashboard", { username, id });
               }
+              //  else {
+              //   Alert.alert("user exists");
+              // }
 
               return console.log(res);
             })

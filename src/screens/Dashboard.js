@@ -73,6 +73,7 @@ export default class Dashboard extends Component {
           })
           .then(res => {
             return console.log(res);
+           Alert.alert("You have successfully sent out your SOS");
           })
           .catch(err => console.log(err));
       },

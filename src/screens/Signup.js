@@ -167,9 +167,9 @@ export default class Signup extends Component {
                            />
                          </View>
 
-                         <View style={styles.input}>
+                         <View style={[styles.inputWrapper, { flexDirection: 'row' }]}>
                            <View
-                             style={{ flexDirection: "row", marginTop: 15 }}
+                             style={{ flexDirection: "row", marginTop: 5 }}
                            >
                              <Text style={{ color: "#ffffff" }}>+234</Text>
                              <Image

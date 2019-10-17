@@ -27,6 +27,7 @@ const MainNavigator = createStackNavigator(
     Signup: { screen: SignupScreen },
     Landing: { screen: LandingScreen },
     Verify: { screen: VerifySignupScreen },
+    Dashboard: { screen: DashboardScreen },
     Success: { screen: SuccessScreen },
     Landing: { screen: LandingSreen },
     ContactSelect: { screen: Contact },
