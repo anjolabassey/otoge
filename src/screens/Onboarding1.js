@@ -8,6 +8,7 @@ import {
   StyleSheet,
   AsyncStorage
 } from "react-native";
+import * as Font from "expo-font";
 
 /* import twitter */
 import twitter, {
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
   },
   button: {
     paddingVertical: 20,
-    paddingHorizontal: 53,
+    paddingHorizontal: 35,
     borderRadius: 12,
     width: "90%"
   }
@@ -116,6 +117,9 @@ function Onboarding1(props) {
   };
 
   useEffect(() => {
+  
+    
+  
     // console.log(
     //   decodeHTMLEntities(
     //     "&amp; &apos; &#x27; &#x2F; &#39; &#47; &lt; &gt; &nbsp; &quot;"

@@ -8,7 +8,7 @@ import {
   Platform
 } from "react-native";
 import { Audio, Permissions, FileSystem } from "expo-av";
-import axios from "axios";
+// import axios from "axios";
 
 const recordingOptions = {
   android: {

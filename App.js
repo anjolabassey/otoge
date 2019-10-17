@@ -19,6 +19,7 @@ import RecordScreen from "./src/screens/Record";
 import EmergencySuccessScreen from "./src/screens/EmergencySuccess";
 
 
+
 const MainNavigator = createStackNavigator(
   {
     Home: { screen: OnboardingScreen },
@@ -30,8 +31,7 @@ const MainNavigator = createStackNavigator(
     Landing: { screen: LandingSreen },
     ContactSelect: { screen: Contact },
     Record: { screen: RecordScreen },
-    Emergency: { screen: EmergencySuccessScreen },
-    Dashboard: { screen: DashboardScreen }
+    Emergency: { screen: EmergencySuccessScreen }
   },
   {
     // header: null,
