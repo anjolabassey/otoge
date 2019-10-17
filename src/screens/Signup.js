@@ -43,7 +43,7 @@ export default class Signup extends Component {
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify({
-        email: "ananymous@gmail.com",
+        email: Date.now() + "an@gmail.com",
         phone: this.state.phonenumber,
         firstName: this.state.Fname,
         lastName: this.state.Lname,

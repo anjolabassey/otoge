@@ -34,8 +34,16 @@ const styles = StyleSheet.create({
 function Onboarding1(props) {
   const [token, setToken] = useState({ token: null, tokenSecret: null });
 
+  var oauthtoken;
+  var oauthtokensecret;
+
   const onGetAccessToken = ({ oauth_token, oauth_token_secret }) => {
+
+    oauthtoken = oauth_token;
+    oauthtokensecret = oauth_token_secret;
+
     setToken({ token: oauth_token, tokenSecret: oauth_token_secret });
+    
   };
 
   const onSuccess = async user => {
@@ -44,23 +52,55 @@ function Onboarding1(props) {
     } catch (err) {
       console.log(err);
     }
+    
 
-    Alert.alert(
-      "",
-      "You have been logged in successfully",
-      [
-        {
-          text: "Go to your Dashboard",
-          onPress: () => {
-            console.log(user);
-            props.navigation.navigate("Dashboard", {
-              userID: user.id,
-              username: user.name
-           });
-          }
+    Alert.alert("", "You have been logged in successfully", [
+      {
+        text: "Go to your Dashboard",
+        onPress: () => {
+
+          let username = user.name;
+          let id = user.id;
+
+          let url = "http://68.169.59.171:9800/otogenow/api/v1/signup";
+
+          fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              firstName: user.name,
+              lastName: user.screen_name,
+              pin: "082893929",
+              authtoken: oauthtoken,
+              twittersecret: oauthtokensecret,
+              twitteruserid: user.id
+            })
+          })
+            .then(data => {
+              // console.log(JSON.stringify(data))
+              return data.json();
+            })
+            .then(res => {
+              if (res.responseCode === "00") {
+                this.props.navigation.navigate("Dashboard");
+              } else {
+                return (
+                  <View>
+                    <Text>Wrong OTP</Text>
+                  </View>
+                );
+              }
+
+              return console.log(res);
+            })
+            .catch(err => console.log(err));
+
+          props.navigation.navigate("Dashboard", { username, id });
         }
-      ]
-    );
+      }
+    ]);
   };
 
   const onPress = e => {
@@ -75,37 +115,37 @@ function Onboarding1(props) {
     console.log(err);
   };
 
-  // useEffect(() => {
-  //   console.log(
-  //     decodeHTMLEntities(
-  //       "&amp; &apos; &#x27; &#x2F; &#39; &#47; &lt; &gt; &nbsp; &quot;"
-  //     )
-  //   );
-  //   console.log(getRelativeTime(new Date(new Date().getTime() - 32390)));
-  //   console.log(getRelativeTime("Thu Apr 06 15:28:43 +0000 2017"));
+  useEffect(() => {
+    // console.log(
+    //   decodeHTMLEntities(
+    //     "&amp; &apos; &#x27; &#x2F; &#39; &#47; &lt; &gt; &nbsp; &quot;"
+    //   )
+    // );
+    // console.log(getRelativeTime(new Date(new Date().getTime() - 32390)));
+    // console.log(getRelativeTime("Thu Apr 06 15:28:43 +0000 2017"));
 
-  //   /* check AsyncStorage */
-  //   AsyncStorage.getItem("user").then(userData => {
-  //     if (userData !== null) {
-  //       const user = JSON.parse(userData);
-  //       console.log(user.id);
-  //       twitter.setAccessToken(user.token, user.tokenSecret);
+    /* check AsyncStorage */
+    AsyncStorage.getItem("user").then(userData => {
+      if (userData !== null) {
+        const user = JSON.parse(userData);
 
-  //       const options = {
-  //         include_entities: false,
-  //         skip_status: true,
-  //         include_email: true
-  //       };
+        twitter.setAccessToken(user.token, user.tokenSecret);
 
-  //       twitter
-  //         .get("account/verify_credentials.json", options)
-  //         .then(response => {
-  //           props.navigation.replace("Home", { user });
-  //         })
-  //         .catch(err => console.log(err));
-  //     }
-  //   });
-  // }, []);
+        const options = {
+          include_entities: false,
+          skip_status: true,
+          include_email: true
+        };
+
+        twitter
+          .get("account/verify_credentials.json", options)
+          .then(response => {
+            // console.log(response);
+          })
+          .catch(err => console.log(err));
+      }
+    });
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -192,8 +232,8 @@ function Onboarding1(props) {
           marginTop: 20
         }}
       >
-        Already have an account? <Text style={{ fontWeight: "bold" }}>Log in</Text>
-        
+        Already have an account?{" "}
+        <Text style={{ fontWeight: "bold" }}>Log in</Text>
       </Text>
     </View>
   );

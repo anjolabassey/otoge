@@ -895,6 +895,11 @@
     xcode "^2.0.0"
     xmldoc "^0.4.0"
 
+"@react-native-community/netinfo@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-4.4.0.tgz#a18eb9ba082b6aca6add004b4a918250ad7d13bc"
+  integrity sha512-qqNWMOsrDjj/daqV21ID2T8mNUjZD4pdx3PuWyE65gzKh2w+oMnzKb+J0NbLyZPn3wwLwU1+Cpf58A0ff5szjQ==
+
 "@react-navigation/core@~3.5.1":
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-3.5.1.tgz#7a2339fca3496979305fb3a8ab88c2ca8d8c214d"
@@ -2086,6 +2091,13 @@ expo-contacts@~7.0.0:
   integrity sha512-Du1tJpw4I/sVpAA27CpSYFk4gxOXOAMYv7XxbuO6XJdM0uFKOawheAPkv+9NkOTw1VQVpqYQdhdx67xCTfkckA==
   dependencies:
     uuid-js "^0.7.5"
+
+expo-device@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-device/-/expo-device-1.0.0.tgz#fbb96b4a35d586e8b70157b7e518b6ed14034233"
+  integrity sha512-1SZz9JKFFA0UD5YF4/3d9//xtDtQJZxG8OgK9+3Lxviv4lwtvQ26njU0tVFx90Y7gy6jV2R+lD/sLxSdgd9l2w==
+  dependencies:
+    ua-parser-js "^0.7.19"
 
 expo-file-system@~7.0.0:
   version "7.0.0"

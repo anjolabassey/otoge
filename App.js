@@ -18,6 +18,7 @@ import Contact from "./src/screens/Contact";
 import RecordScreen from "./src/screens/Record";
 import EmergencySuccessScreen from "./src/screens/EmergencySuccess";
 
+
 const MainNavigator = createStackNavigator(
   {
     Home: { screen: OnboardingScreen },

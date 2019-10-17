@@ -45,7 +45,7 @@ export default class Verify extends Component {
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify({
-        "userId": this.navigation.navigate.state.params.phonenumber, 
+        "userId": this.props.navigation.state.params.phonenumber, 
         "otpString": this.state.otp 
       })
     }) 
@@ -57,7 +57,7 @@ export default class Verify extends Component {
     .then(res => {
 
       if (res.responseCode === "00"){
-        this.props.navigation.navigate("Success");
+        this.props.navigation.navigate("Dashboard");
        
       } else{
         return(
