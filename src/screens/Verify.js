@@ -64,6 +64,7 @@ export default class Verify extends Component {
 
       if (res.responseCode === "00"){
         this.props.navigation.navigate("Success");
+       
       } else{
         Alert.alert("OTP does'nt match")
         this.props.navigation.navigate("Verify");
@@ -78,7 +79,7 @@ export default class Verify extends Component {
   } 
   }
   goBack() {
-    this.props.navigation.navigate("Landing");
+    this.props.navigation.navigate("Signup");
   }
 
   

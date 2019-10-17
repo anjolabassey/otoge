@@ -45,23 +45,20 @@ export default class Signup extends Component {
     }else{
 
     fetch(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify({
-        "email": this.state.email,
-        "phone": this.state.phonenumber,
-        "firstName": this.state.Fname,
-        "lastName": this.state.Lname,
-        "pin": this.state.password
+        email: "ananymous@gmail.com",
+        phone: this.state.phonenumber,
+        firstName: this.state.Fname,
+        lastName: this.state.Lname,
+        pin: this.state.password
       })
-    }) 
-    .then(data => {
-      // console.log(JSON.stringify(data))
-      return data.json()
     })
+
     .then(res => {
     
       this.props.navigation.navigate("Verify", {phonenumber});
@@ -69,11 +66,21 @@ export default class Signup extends Component {
       )
     .catch(err => (console.log(err)));
 
+      .then(data => {
+        // console.log(JSON.stringify(data))
+        return data.json();
+      })
+      .then(res => {
+        return console.log(res);
+      })
+      .catch(err => console.log(err));
+
+
     
     }
   }
   goBack() {
-    this.props.navigation.navigate("Landing");
+    this.props.navigation.navigate("Home");
   }
 
   render() {
@@ -88,6 +95,18 @@ export default class Signup extends Component {
         paddingHorizontal: 53,
         borderRadius: 12,
         marginTop: 63
+      },
+      input: {
+        paddingHorizontal: 10,
+        paddingVertical: 1,
+        marginBottom: 24,
+        backgroundColor: "#454F63",
+        color: "#ffffff",
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: this.state.border,
+        borderStyle: "solid",
+        width: "80%"
       },
       inputWrapper: {
         paddingHorizontal: 17,
@@ -127,7 +146,7 @@ export default class Signup extends Component {
 
           <View style={styles.inputWrapper}>
             <TextInput
-              style={{ color: "#ffffff" }}
+              style={{ color: "#959DAD" }}
               onFocus={() => this.onFocus()}
               placeholder="First Name"
               onChangeText={Fname => this.setState({ Fname })}
@@ -142,11 +161,19 @@ export default class Signup extends Component {
             />
           </View>
 
-          <View style={styles.inputWrapper}>
+
+          <View style={styles.input}>
+            <View style={{ flexDirection: "row", marginTop: 15 }}>
+              <Text style={{ color: "#ffffff" }}>+234</Text>
+              <Image
+                style={{ marginTop: 10, marginLeft: 5 }}
+                source={require("../assets/img/chevron.png")}
+              />
+            </View>
+
             <TextInput
               style={{ color: "#ffffff" }}
               onFocus={() => this.onFocus()}
-              placeholder="+234"
               onChangeText={phonenumber => this.setState({ phonenumber })}
             />
           </View>

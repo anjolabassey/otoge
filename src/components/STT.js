@@ -57,11 +57,21 @@ export default class SpeechToTextButton extends Component {
       const { uri } = await FileSystem.getInfoAsync(this.recording.getURI());
 
       const formData = new FormData();
-      formData.append("file", {
-        uri,
-        type: Platform.OS === "ios" ? "audio/x-wav" : "audio/m4a",
-        name: Platform.OS === "ios" ? `${Date.now()}.wav` : `${Date.now()}.m4a`
-      });
+    //   formData.append("file", {
+    //     uri,
+    //     type: Platform.OS === "ios" ? "audio/x-wav" : "audio/m4a",
+    //     name: Platform.OS === "ios" ? `${Date.now()}.wav` : `${Date.now()}.m4a`
+    //   }, "audio.caf");
+        
+        formData.append(
+          "file",
+          {
+            uri: Platform.OS == "android" ? "file://" + uri : uri,
+            name: "test.aac",
+            type: "audio/aac"
+          },
+          "audio.caf"
+        );
 
       const { data } = await axios.post(
         "http://localhost:3005/speech",
