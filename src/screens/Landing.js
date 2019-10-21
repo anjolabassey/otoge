@@ -53,7 +53,7 @@ export default class Landing extends Component {
       },
       button: {
         paddingVertical: 20,
-        paddingHorizontal: 53,
+        paddingHorizontal: 35,
         borderRadius: 12,
         marginBottom: 28,
         backgroundColor: "#665EFF",

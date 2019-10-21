@@ -22,7 +22,7 @@ export default class Onboarding2 extends Component {
       },
       button: {
         paddingVertical: 20,
-        paddingHorizontal: 53,
+        paddingHorizontal: 35,
         borderRadius: 12
       }
     });
