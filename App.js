@@ -17,6 +17,8 @@ import LandingSreen from "./src/screens/Landing";
 import Contact from "./src/screens/Contact";
 import RecordScreen from "./src/screens/Record";
 import EmergencySuccessScreen from "./src/screens/EmergencySuccess";
+import DashboardContact from "./src/screens/DashboardContact";
+import DashboardEmergency from "./src/screens/DashboardEmergency";
 
 
 
@@ -28,6 +30,8 @@ const MainNavigator = createStackNavigator(
     Landing: { screen: LandingScreen },
     Verify: { screen: VerifySignupScreen },
     Dashboard: { screen: DashboardScreen },
+    DashboardContact: { screen: DashboardContact },
+    DashboardEmergency: { screen: DashboardEmergency},
     Success: { screen: SuccessScreen },
     Landing: { screen: LandingSreen },
     ContactSelect: { screen: Contact },

@@ -1,4 +1,4 @@
-import React,  {Component} from 'react';
+import React from "react";
 import {
   StyleSheet,
   Text,
@@ -7,24 +7,18 @@ import {
   SafeAreaView,
   FlatList,
   ActivityIndicator,
-  TouchableOpacity,
-} from 'react-native';
-
-import * as Contacts from 'expo-contacts';
-import * as Permissions from 'expo-permissions';
-import { object } from 'prop-types';
-
-export default class Contact extends Component {
-  constructor(props) {
-    super(props);
+  TouchableOpacity
+} from "react-native";
+import * as Contacts from "expo-contacts";
+import * as Permissions from "expo-permissions";
+import { object } from "prop-types";
+export default class App extends React.Component {
+  constructor() {
+    super();
     this.state = {
-      selectedContact: "",
       isLoading: false,
-      contacts: [],
-      
+      contacts: []
     };
-
-    this.SelectContact = this.SelectContact.bind(this)
   }
 
   // getPermissionsAsync = async () => {
@@ -33,11 +27,9 @@ export default class Contact extends Component {
   // };
 
   loadContacts = async () => {
-    const permission = await Permissions.askAsync(
-      Permissions.CONTACTS
-    );
+    const permission = await Permissions.askAsync(Permissions.CONTACTS);
 
-    if (permission.status !== 'granted') {
+    if (permission.status !== "granted") {
       return;
     }
 
@@ -45,69 +37,99 @@ export default class Contact extends Component {
       fields: [Contacts.Fields.PhoneNumbers]
     });
 
-    let data2 = []
+    let data2 = [];
 
-   data.forEach((one)=>{
-        if(one.hasOwnProperty("phoneNumbers")){
-            data2.push(one)
-        }
-   })
+    data.forEach(one => {
+      if (one.hasOwnProperty("phoneNumbers")) {
+        data2.push(one);
+      }
+    });
 
-   data2 = data2.map(item => {
-    item.isSelect = false;
-    item.selectedClass = styles.list;
-});
-
-    this.setState({ contacts: data2, inMemoryContacts: data2, isLoading: false });
+    this.setState({
+      contacts: data2,
+      inMemoryContacts: data2,
+      isLoading: false
+    });
   };
 
   componentDidMount() {
     this.setState({ isLoading: true });
     this.loadContacts();
-    // console.log(this.state.contacts)
+    console.log(this.state.contacts);
   }
 
   SelectContact = (item) => {
-    let mobileNumber = item.phoneNumbers[0].number || item.phoneNumbers[1].number 
+    let mobileNumber = item.phoneNumbers[0].number || item.phoneNumbers[1].number
+    let phonenumber = this.props.navigation.state.params.phonenumber;
+    let name = this.props.navigation.state.params.name;
 
     let TruncMobile = mobileNumber.replace(/ +/g, "")
 
-    this.setState({
-        selectedContact: TruncMobile,
-    }, () => {
-        console.log("Refined " + this.state.selectedContact)
+    let sosContact = []
+    
+    sosContact.push(TruncMobile)
+    
+    let url = "http://68.169.59.171:9800/otogenow/api/v1/addcontact";
+
+    console.log(sosContact)
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify({
+        userId: this.props.navigation.state.params.phonenumber,
+        sosContact: sosContact
+      })
     })
+
+      .then(res => {
+        if (res.responseCode === "00") {
+          Alert.alert("OTP does'nt match");
+
+          this.props.navigation.navigate("Verify");
+        } else {
+          this.props.navigation.navigate("Emergency", {
+            phonenumber: phonenumber,
+            name: name
+          });
+        }
+
+        return console.log(res);
+      })
+      .catch(err => console.log(err));
+    
     
 
-    this.props.navigation.navigate("Emergency")
+    this.props.navigation.navigate("EmergencySuccess", {
+      phonenumber: phonenumber,
+      name: name,
+
+    })
   }
 
   renderItem = ({ item }) => (
-    <TouchableOpacity 
-    onPress = {() => {
-      this.SelectContact(item)
-    }}
-    >   
-       <View style={{ minHeight: 70, padding: 5 }}>
-      <Text style={{ color: '#bada55', fontWeight: 'bold', fontSize: 20 }}>
-        {item.firstName + ' '}
-        {item.lastName}
-      </Text>
-      
-    
-           <Text style={{ color: 'white', fontWeight: 'bold' }}>
-           {item.phoneNumbers[0].number}
-         </Text>
-    </View>
-    </TouchableOpacity>
+    <TouchableOpacity onPress={() => {this.SelectContact(item);}}>
+      <View style={{ minHeight: 70, padding: 5 }}>
+        <Text style={{ color: "#bada55", fontWeight: "bold", fontSize: 26 }}>
+          {item.firstName + " "}
+          {item.lastName}
+        </Text>
 
+        <Text style={{ color: "white", fontWeight: "bold" }}>
+          {item.phoneNumbers[0].number}
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 
   searchContacts = value => {
     const filteredContacts = this.state.inMemoryContacts.filter(contact => {
       let contactLowercase = (
         contact.firstName +
-        ' ' +
+        " " +
         contact.lastName
       ).toLowerCase();
 
@@ -120,29 +142,29 @@ export default class Contact extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1,  backgroundColor: '#2A2E43',  marginTop: 20  }}>
-        <SafeAreaView style={{ backgroundColor: '#2A2E43' }} />
+      <View style={{ flex: 1, backgroundColor: "#2A2E43", marginTop: 20 }}>
+        <SafeAreaView style={{ backgroundColor: "#2A2E43" }} />
         <TextInput
           placeholder="Search"
           placeholderTextColor="#dddddd"
           style={{
-            backgroundColor: '#2f363c',
+            backgroundColor: "#2f363c",
             height: 40,
             fontSize: 20,
             padding: 10,
-            color: 'white',
+            color: "white",
             borderBottomWidth: 0.5,
-            borderBottomColor: '#7d90a0'
+            borderBottomColor: "#7d90a0"
           }}
           onChangeText={value => this.searchContacts(value)}
         />
-        <View style={{ flex: 1, backgroundColor: '#2A2E43' }}>
+        <View style={{ flex: 1, backgroundColor: "#2A2E43" }}>
           {this.state.isLoading ? (
             <View
               style={{
                 ...StyleSheet.absoluteFill,
-                alignItems: 'center',
-                justifyContent: 'center'
+                alignItems: "center",
+                justifyContent: "center"
               }}
             >
               <ActivityIndicator size="large" color="#bad555" />
@@ -156,12 +178,12 @@ export default class Contact extends Component {
               <View
                 style={{
                   flex: 1,
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  alignItems: "center",
+                  justifyContent: "center",
                   marginTop: 50
                 }}
               >
-                <Text style={{ color: '#bad555' }}>No Contacts Found</Text>
+                <Text style={{ color: "#bad555" }}>No Contacts Found</Text>
               </View>
             )}
           />
@@ -174,8 +196,9 @@ export default class Contact extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-   backgroundColor: "#2A2E43",
-    alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: '#2A2E43',
+    alignItems: "center",
+    justifyContent: "center"
+
   }
 });

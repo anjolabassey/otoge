@@ -9,7 +9,7 @@ import {
   TextInput,
   Alert
 } from "react-native";
-import OTPTextView from '../../node_modules/react-native-otp-textinput';
+import OTPTextView from "../../node_modules/react-native-otp-textinput";
 // import OtpInputs from "../components/OtpInputs";
 
 export default class Verify extends Component {
@@ -24,7 +24,7 @@ export default class Verify extends Component {
     this.success = this.success.bind(this);
     this.goBack = this.goBack.bind(this);
   }
-  
+
   getOtp(otp) {
     console.log(otp);
     this.setState({ otp });
@@ -36,57 +36,49 @@ export default class Verify extends Component {
     });
   }
   success() {
+    let url = "https://46a58315.ngrok.io/otogenow/api/v1/otp";
 
-    let url = "https://46a58315.ngrok.io/otogenow/api/v1/otp"
+    console.log(this.props.navigation.state.params);
 
-    if(this.state.otp === ""){ 
-      Alert.alert("Please enter OTP")
-    }
-    else{   
+    let phonenumber = this.props.navigation.state.params.phonenumber;
+    let name = this.props.navigation.state.params.name;
 
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: JSON.stringify({
-        "userId": this.props.navigation.state.params.phonenumber, 
-        "otpString": this.state.otp 
+    if (this.state.otp === "") {
+      Alert.alert("Please enter OTP");
+    } else {
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify({
+          userId: this.props.navigation.state.params.phonenumber,
+          otpString: this.state.otp
+        })
       })
-    }) 
-    .then(data => {
-      // console.log(JSON.stringify(data))
-      return data.json()
-      
-    })
-    .then(res => {
 
-      if (res.responseCode === "00"){
-        this.props.navigation.navigate("Dashboard");
-       
-      } else{
-        Alert.alert("OTP does'nt match")
-        this.props.navigation.navigate("Verify");
+        .then(res => {
+          if (res.responseCode === "00") {
+            Alert.alert("OTP does'nt match");
+            this.props.navigation.navigate("Verify");
+          } else {
+            this.props.navigation.navigate("Success", {
+              phonenumber: phonenumber,
+              name:name
+            });
+          }
 
-      }
-
-      return console.log(res)
-    })
-    .catch(err => (console.log(err))); 
-    
-
-  } 
+          return console.log(res);
+        })
+        .catch(err => console.log(err));
+    }
   }
   goBack() {
-    this.props.navigation.navigate("Signup");
+    this.props.navigation.navigate("Landing");
   }
 
-  
-  async componentDidMount() {
-    
-   
-  }
+  async componentDidMount() {}
 
   render() {
     const styles = StyleSheet.create({
@@ -115,9 +107,8 @@ export default class Verify extends Component {
       },
       roundedTextInput: {
         borderRadius: 10,
-        borderWidth: 4,
-      },
-
+        borderWidth: 4
+      }
     });
 
     return (
@@ -128,7 +119,6 @@ export default class Verify extends Component {
             source={require("../assets/img/back.png")}
           />
         </TouchableOpacity>
-        
 
         <View style={{ alignItems: "center" }}>
           <Text
@@ -144,13 +134,12 @@ export default class Verify extends Component {
             Enter 5-digit pin sent to your device
           </Text>
 
-
           <OTPTextView
-          containerStyle={styles.textInputContainer}
-          handleTextChange={text => this.setState({ otp: text })}
-          textInputStyle={styles.roundedTextInput}
-          inputCount={5}
-          keyboardType="numeric"
+            containerStyle={styles.textInputContainer}
+            handleTextChange={text => this.setState({ otp: text })}
+            textInputStyle={styles.roundedTextInput}
+            inputCount={5}
+            keyboardType="numeric"
           />
 
           <Text
@@ -191,22 +180,21 @@ export default class Verify extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    padding: 5,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF",
+    padding: 5
   },
   welcome: {
     fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    textAlign: "center",
+    margin: 10
   },
   instructions: {
     fontSize: 22,
-    fontWeight: '500',
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 20,
-  },
-  
+    fontWeight: "500",
+    textAlign: "center",
+    color: "#333333",
+    marginBottom: 20
+  }
 });

@@ -62,6 +62,7 @@ function Onboarding1(props) {
 
           let username = user.name;
           let id = user.id;
+          
 
           let url = "http://68.169.59.171:9800/otogenow/api/v1/signup";
 
@@ -85,6 +86,7 @@ function Onboarding1(props) {
             })
             .then(res => {
               if (res.responseCode === "00") {
+                
                 props.navigation.navigate("Dashboard", { username, id });
               }
               //  else {
@@ -155,7 +157,7 @@ function Onboarding1(props) {
       </View>
 
       <Image
-        style={{ marginTop: 45, marginBottom: 44 }}
+        style={{ marginTop: 55, marginBottom: 44 }}
         source={require("../assets/img/swipe1.png")}
       />
 
@@ -167,7 +169,10 @@ function Onboarding1(props) {
           textAlign: "center"
         }}
       >
-        Automatic tweets via voice activation
+        <Text>
+          Automatic tweets via{"\n"}
+          voice activation
+        </Text>
       </Text>
 
       <Image

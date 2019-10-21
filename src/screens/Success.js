@@ -21,10 +21,16 @@ export default class Success extends Component {
     )
   }
   async componentDidMount() {
-    
+   
+    let phonenumber = this.props.navigation.state.params.phonenumber;
+    let name = this.props.navigation.state.params.name;
+
     const data = await this.performTimeConsumingTask();
     if (data !== null) {
-      this.props.navigation.navigate('Dashboard');
+      this.props.navigation.navigate("DashboardContact", {
+        phonenumber: phonenumber,
+        name: name
+      });
     }
   }
 
@@ -39,7 +45,7 @@ export default class Success extends Component {
       },
       button: {
         paddingVertical: 20,
-        paddingHorizontal: 53,
+        paddingHorizontal: 35,
         borderRadius: 12
       },
       inputWrapper: {
